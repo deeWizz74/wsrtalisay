@@ -3,6 +3,8 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { initials } from "@/lib/format";
 import type { SpotlightEntry } from "@/lib/types";
 
+export const dynamic = "force-dynamic";
+
 const FIELDS: { key: keyof SpotlightEntry; label: string }[] = [
   { key: "family", label: "Family" },
   { key: "workSchool", label: "Work / School" },
@@ -13,8 +15,8 @@ const FIELDS: { key: keyof SpotlightEntry; label: string }[] = [
   { key: "messageToWard", label: "A Message to the Ward" },
 ];
 
-export default function SpotlightPage() {
-  const dir = readDirectory();
+export default async function SpotlightPage() {
+  const dir = await readDirectory();
   const { spotlight } = dir.info;
 
   return (

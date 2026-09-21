@@ -5,6 +5,10 @@ export interface Person {
   messenger: string;
   phone: string;
   email: string;
+  // Overrides the group's role label on this person's card — for boxes that
+  // group several distinct titles together (e.g. a "Stake Presidency" box
+  // holding the President and both counselors).
+  calling?: string;
 }
 
 export interface Group {

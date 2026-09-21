@@ -7,6 +7,8 @@ import type { MentionIndex } from "@/lib/mentions";
 import { RichParagraph } from "@/lib/richtext";
 import type { EffortBlock } from "@/lib/types";
 
+export const dynamic = "force-dynamic";
+
 function BlockContent({ block, mentionIndex }: { block: EffortBlock; mentionIndex: MentionIndex }) {
   if (block.type === "image") {
     if (!block.url) return null;
@@ -33,7 +35,7 @@ function BlockContent({ block, mentionIndex }: { block: EffortBlock; mentionInde
 
 export default async function EffortPostPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const dir = readDirectory();
+  const dir = await readDirectory();
   const post = dir.info.wsrEfforts.find((p) => p.id === id);
   if (!post) notFound();
 

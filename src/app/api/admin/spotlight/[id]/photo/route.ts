@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
 import path from "path";
 import { getSessionUser } from "@/lib/auth";
-import { readDirectory, writeDirectory, UPLOADS_DIR } from "@/lib/data";
+import { readDirectory, writeDirectory, uploadPhoto, deletePhoto } from "@/lib/data";
 
 const ALLOWED_TYPES = new Set(["image/jpeg", "image/png", "image/webp", "image/gif"]);
 const MAX_SIZE = 5 * 1024 * 1024;
@@ -12,7 +11,7 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
   if (!user) return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
 
   const { id } = await params;
-  const dir = readDirectory();
+  const dir = await readDirectory();
   const entry = dir.info.spotlight.find((e) => e.id === id);
   if (!entry) return NextResponse.json({ error: "Spotlight entry not found" }, { status: 404 });
 
@@ -28,14 +27,10 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
 
   const ext = path.extname(file.name).toLowerCase() || ".jpg";
   const filename = `spotlight-${id}-${Date.now()}${ext}`;
-  const buffer = Buffer.from(await file.arrayBuffer());
-  fs.writeFileSync(path.join(UPLOADS_DIR, filename), buffer);
+  const url = await uploadPhoto(`uploads/${filename}`, file);
 
-  if (entry.photo) {
-    const old = path.join(process.cwd(), "public", entry.photo);
-    if (fs.existsSync(old)) fs.unlinkSync(old);
-  }
-  entry.photo = `/uploads/${filename}`;
-  writeDirectory(dir);
+  if (entry.photo) await deletePhoto(entry.photo);
+  entry.photo = url;
+  await writeDirectory(dir);
   return NextResponse.json(entry);
 }

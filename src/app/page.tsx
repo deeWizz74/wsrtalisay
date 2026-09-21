@@ -3,6 +3,11 @@ import { readDirectory, computeStats } from "@/lib/data";
 import { WardJumpForm } from "@/components/landing/WardJumpForm";
 import { Button } from "@/components/ui/button";
 
+// Directory data lives in Vercel Blob and changes whenever an admin edits
+// it, so this page must render per-request rather than be baked into a
+// static build.
+export const dynamic = "force-dynamic";
+
 const SPECIALIST_ROLES = [
   "Education Specialist",
   "Family Services Specialist",
@@ -13,8 +18,8 @@ const SPECIALIST_ROLES = [
   "ATPG Specialist",
 ];
 
-export default function HomePage() {
-  const dir = readDirectory();
+export default async function HomePage() {
+  const dir = await readDirectory();
   const stats = computeStats(dir);
   const wards = dir.wards.map((w) => ({ slug: w.slug, name: w.name, isStake: !!w.isStake }));
   const stake = wards.find((w) => w.isStake);

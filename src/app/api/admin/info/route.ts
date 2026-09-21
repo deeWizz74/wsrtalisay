@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
 import { getSessionUser } from "@/lib/auth";
-import { readDirectory, writeDirectory } from "@/lib/data";
+import { readDirectory, writeDirectory, deletePhoto } from "@/lib/data";
 import type { EffortBlock, EffortPost, FaqEntry, SpotlightEntry } from "@/lib/types";
 
 const STRING_FIELDS_SPOTLIGHT: (keyof SpotlightEntry)[] = [
@@ -52,12 +50,9 @@ function isEffortPost(v: unknown): v is EffortPost {
   );
 }
 
-function removeOrphanedPhotos(oldEntries: { id: string; photo: string }[], keptIds: Set<string>) {
+async function removeOrphanedPhotos(oldEntries: { id: string; photo: string }[], keptIds: Set<string>) {
   for (const old of oldEntries) {
-    if (!keptIds.has(old.id) && old.photo) {
-      const photoPath = path.join(process.cwd(), "public", old.photo);
-      if (fs.existsSync(photoPath)) fs.unlinkSync(photoPath);
-    }
+    if (!keptIds.has(old.id) && old.photo) await deletePhoto(old.photo);
   }
 }
 
@@ -72,21 +67,18 @@ function collectEffortPhotoUrls(posts: EffortPost[]): Set<string> {
   return urls;
 }
 
-function removeOrphanedEffortPhotos(oldPosts: EffortPost[], newPosts: EffortPost[]) {
+async function removeOrphanedEffortPhotos(oldPosts: EffortPost[], newPosts: EffortPost[]) {
   const oldUrls = collectEffortPhotoUrls(oldPosts);
   const newUrls = collectEffortPhotoUrls(newPosts);
   for (const url of oldUrls) {
-    if (!newUrls.has(url)) {
-      const photoPath = path.join(process.cwd(), "public", url);
-      if (fs.existsSync(photoPath)) fs.unlinkSync(photoPath);
-    }
+    if (!newUrls.has(url)) await deletePhoto(url);
   }
 }
 
 export async function GET() {
   const user = await getSessionUser();
   if (!user) return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
-  const dir = readDirectory();
+  const dir = await readDirectory();
   return NextResponse.json(dir.info);
 }
 
@@ -106,12 +98,12 @@ export async function PUT(req: Request) {
     return NextResponse.json({ error: "Invalid wsrEfforts" }, { status: 400 });
   }
 
-  const dir = readDirectory();
+  const dir = await readDirectory();
 
-  removeOrphanedPhotos(dir.info.spotlight, new Set(spotlight.map((e: SpotlightEntry) => e.id)));
-  removeOrphanedEffortPhotos(dir.info.wsrEfforts, wsrEfforts);
+  await removeOrphanedPhotos(dir.info.spotlight, new Set(spotlight.map((e: SpotlightEntry) => e.id)));
+  await removeOrphanedEffortPhotos(dir.info.wsrEfforts, wsrEfforts);
 
   dir.info = { pefFaq, spotlight, wsrEfforts };
-  writeDirectory(dir);
+  await writeDirectory(dir);
   return NextResponse.json(dir.info);
 }

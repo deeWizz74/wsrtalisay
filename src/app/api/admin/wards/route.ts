@@ -5,6 +5,6 @@ import { readDirectory } from "@/lib/data";
 export async function GET() {
   const user = await getSessionUser();
   if (!user) return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
-  const dir = readDirectory();
+  const dir = await readDirectory();
   return NextResponse.json(dir.wards);
 }

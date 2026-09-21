@@ -47,7 +47,7 @@ function PersonTile({
       )}
       <span className="min-w-0">
         <span className="block truncate text-sm font-bold text-foreground">{person.name}</span>
-        <span className="block truncate text-xs text-muted-foreground">{role}</span>
+        <span className="block truncate text-xs text-muted-foreground">{person.calling || role}</span>
       </span>
     </button>
   );
@@ -186,7 +186,7 @@ export function CommitteeList({ ward, roleLegend }: { ward: Ward; roleLegend: Re
                 <ProfileCard
                   bare
                   person={selected.person}
-                  role={selected.role}
+                  role={selected.person.calling || selected.role}
                   roleDescription={roleLegend[selected.role]}
                 />
               ) : (

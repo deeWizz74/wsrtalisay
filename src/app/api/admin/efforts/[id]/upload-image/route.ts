@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
 import path from "path";
 import { getSessionUser } from "@/lib/auth";
-import { UPLOADS_DIR } from "@/lib/data";
+import { uploadPhoto } from "@/lib/data";
 
 const ALLOWED_TYPES = new Set(["image/jpeg", "image/png", "image/webp", "image/gif"]);
 const MAX_SIZE = 5 * 1024 * 1024;
@@ -29,8 +28,7 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
 
   const ext = path.extname(file.name).toLowerCase() || ".jpg";
   const filename = `effort-${id}-inline-${Date.now()}${ext}`;
-  const buffer = Buffer.from(await file.arrayBuffer());
-  fs.writeFileSync(path.join(UPLOADS_DIR, filename), buffer);
+  const url = await uploadPhoto(`uploads/${filename}`, file);
 
-  return NextResponse.json({ url: `/uploads/${filename}` });
+  return NextResponse.json({ url });
 }

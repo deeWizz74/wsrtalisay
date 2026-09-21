@@ -1,8 +1,10 @@
 import { readDirectory } from "@/lib/data";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 
-export default function FaqPage() {
-  const dir = readDirectory();
+export const dynamic = "force-dynamic";
+
+export default async function FaqPage() {
+  const dir = await readDirectory();
   const { pefFaq } = dir.info;
 
   return (

@@ -11,7 +11,7 @@ export async function POST(req: Request, { params }: { params: Promise<{ slug: s
   const { groupKind, roleIndex, name } = await req.json();
   if (!name || !name.trim()) return NextResponse.json({ error: "Name is required" }, { status: 400 });
 
-  const dir = readDirectory();
+  const dir = await readDirectory();
   const ward = dir.wards.find((w) => w.slug === slug);
   if (!ward) return NextResponse.json({ error: "Ward not found" }, { status: 404 });
 
@@ -33,6 +33,6 @@ export async function POST(req: Request, { params }: { params: Promise<{ slug: s
     email: "",
   };
   group.people.push(person);
-  writeDirectory(dir);
+  await writeDirectory(dir);
   return NextResponse.json(person);
 }

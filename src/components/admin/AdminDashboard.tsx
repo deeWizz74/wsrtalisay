@@ -42,6 +42,7 @@ function PersonRow({
     messenger: person.messenger,
     phone: person.phone,
     email: person.email,
+    calling: person.calling ?? "",
   });
   const [saved, setSaved] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -90,6 +91,11 @@ function PersonRow({
 
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
         <Input placeholder="Full name" value={fields.name} onChange={(e) => update("name", e.target.value)} />
+        <Input
+          placeholder="Calling (optional — overrides the box's label on this card)"
+          value={fields.calling}
+          onChange={(e) => update("calling", e.target.value)}
+        />
         <Input
           placeholder="Messenger username or link"
           value={fields.messenger}

@@ -12,6 +12,8 @@ import {
   sortedEffortsByDate,
 } from "@/lib/blog";
 
+export const dynamic = "force-dynamic";
+
 function pageHref(page: number, year?: number, month?: number) {
   const params = new URLSearchParams();
   if (year) params.set("year", String(year));
@@ -27,7 +29,7 @@ export default async function EffortsPage({
   searchParams: Promise<{ year?: string; month?: string; page?: string }>;
 }) {
   const sp = await searchParams;
-  const dir = readDirectory();
+  const dir = await readDirectory();
   const allPosts = sortedEffortsByDate(dir.info.wsrEfforts);
   const archive = buildArchive(allPosts);
 

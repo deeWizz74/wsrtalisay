@@ -1,8 +1,7 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
 import path from "path";
 import { getSessionUser } from "@/lib/auth";
-import { readDirectory, writeDirectory, findPerson, UPLOADS_DIR } from "@/lib/data";
+import { readDirectory, writeDirectory, findPerson, uploadPhoto, deletePhoto } from "@/lib/data";
 
 const ALLOWED_TYPES = new Set(["image/jpeg", "image/png", "image/webp", "image/gif"]);
 const MAX_SIZE = 5 * 1024 * 1024;
@@ -12,7 +11,7 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
   if (!user) return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
 
   const { id } = await params;
-  const dir = readDirectory();
+  const dir = await readDirectory();
   const found = findPerson(dir, id);
   if (!found) return NextResponse.json({ error: "Person not found" }, { status: 404 });
 
@@ -28,14 +27,10 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
 
   const ext = path.extname(file.name).toLowerCase() || ".jpg";
   const filename = `${id}-${Date.now()}${ext}`;
-  const buffer = Buffer.from(await file.arrayBuffer());
-  fs.writeFileSync(path.join(UPLOADS_DIR, filename), buffer);
+  const url = await uploadPhoto(`uploads/${filename}`, file);
 
-  if (found.person.photo) {
-    const old = path.join(process.cwd(), "public", found.person.photo);
-    if (fs.existsSync(old)) fs.unlinkSync(old);
-  }
-  found.person.photo = `/uploads/${filename}`;
-  writeDirectory(dir);
+  if (found.person.photo) await deletePhoto(found.person.photo);
+  found.person.photo = url;
+  await writeDirectory(dir);
   return NextResponse.json(found.person);
 }

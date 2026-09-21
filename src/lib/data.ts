@@ -1,16 +1,56 @@
 import "server-only";
 import fs from "fs";
 import path from "path";
+import { get, put, del } from "@vercel/blob";
+import seedDirectory from "../../data/directory.json";
 import type { DirectoryData, Group, Person, Ward, Stats } from "./types";
 
-const DATA_DIR = path.join(process.cwd(), "data");
-export const DIRECTORY_FILE = path.join(DATA_DIR, "directory.json");
-export const UPLOADS_DIR = path.join(process.cwd(), "public", "uploads");
+const DIRECTORY_BLOB_PATH = "data/directory.json";
 
-fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+// Vercel deployments always have BLOB_READ_WRITE_TOKEN set (Storage → Blob),
+// so production uses Blob storage. Without it — plain `npm run dev` on a
+// machine with no Vercel project linked yet — fall back to the local disk,
+// mirroring the old Render-era storage, so the app is testable standalone.
+const USE_BLOB = !!process.env.BLOB_READ_WRITE_TOKEN;
 
-export function readDirectory(): DirectoryData {
-  const dir: DirectoryData = JSON.parse(fs.readFileSync(DIRECTORY_FILE, "utf8"));
+const LOCAL_DATA_DIR = path.join(process.cwd(), "data");
+const LOCAL_DIRECTORY_FILE = path.join(LOCAL_DATA_DIR, "directory.json");
+const LOCAL_UPLOADS_DIR = path.join(process.cwd(), "public", "uploads");
+
+async function fetchDirectoryBlob(): Promise<DirectoryData | null> {
+  if (!USE_BLOB) {
+    if (!fs.existsSync(LOCAL_DIRECTORY_FILE)) return null;
+    return JSON.parse(fs.readFileSync(LOCAL_DIRECTORY_FILE, "utf8")) as DirectoryData;
+  }
+  const result = await get(DIRECTORY_BLOB_PATH, { access: "public" });
+  if (!result) return null;
+  return (await new Response(result.stream).json()) as DirectoryData;
+}
+
+export async function writeDirectory(dir: DirectoryData): Promise<void> {
+  dir.meta.updatedAt = new Date().toISOString();
+  if (!USE_BLOB) {
+    fs.mkdirSync(LOCAL_DATA_DIR, { recursive: true });
+    fs.writeFileSync(LOCAL_DIRECTORY_FILE, JSON.stringify(dir, null, 2));
+    return;
+  }
+  await put(DIRECTORY_BLOB_PATH, JSON.stringify(dir, null, 2), {
+    access: "public",
+    addRandomSuffix: false,
+    allowOverwrite: true,
+    contentType: "application/json",
+  });
+}
+
+export async function readDirectory(): Promise<DirectoryData> {
+  // First read on a fresh deploy: the blob store starts empty, so seed it
+  // from the JSON committed to the repo and persist that as the baseline.
+  let dir = await fetchDirectoryBlob();
+  if (!dir) {
+    dir = structuredClone(seedDirectory) as DirectoryData;
+    await writeDirectory(dir);
+  }
+
   if (!dir.info) {
     dir.info = { pefFaq: [], spotlight: [], wsrEfforts: [] };
   }
@@ -27,9 +67,31 @@ export function readDirectory(): DirectoryData {
   return dir;
 }
 
-export function writeDirectory(dir: DirectoryData) {
-  dir.meta.updatedAt = new Date().toISOString();
-  fs.writeFileSync(DIRECTORY_FILE, JSON.stringify(dir, null, 2));
+// Uploads a photo and returns its URL — a full blob URL in production, or a
+// `/uploads/...` public-folder path in the local-disk fallback.
+export async function uploadPhoto(pathname: string, file: File): Promise<string> {
+  if (!USE_BLOB) {
+    fs.mkdirSync(LOCAL_UPLOADS_DIR, { recursive: true });
+    const filename = path.basename(pathname);
+    const buffer = Buffer.from(await file.arrayBuffer());
+    fs.writeFileSync(path.join(LOCAL_UPLOADS_DIR, filename), buffer);
+    return `/uploads/${filename}`;
+  }
+  const blob = await put(pathname, file, { access: "public", addRandomSuffix: false });
+  return blob.url;
+}
+
+// Deletes a previously uploaded photo. Silently ignores missing files/blobs.
+export async function deletePhoto(url: string): Promise<void> {
+  if (!url) return;
+  if (!USE_BLOB) {
+    if (!url.startsWith("/uploads/")) return;
+    const local = path.join(process.cwd(), "public", url);
+    if (fs.existsSync(local)) fs.unlinkSync(local);
+    return;
+  }
+  if (!url.startsWith("http")) return;
+  await del(url).catch(() => {});
 }
 
 // A specialist role chairs its own area (viceChair), and a stake-level
