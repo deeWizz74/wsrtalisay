@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Talisay Stake — Know Your Specialist",
-    "updatedAt": "2026-08-13T07:52:21.181Z",
+    "updatedAt": "2026-09-18T16:37:10.829Z",
     "roleLegend": {
       "WSR Specialist": "Leads the ward Welfare & Self-Reliance committee.",
       "Education Specialist": "Helps members pursue education and skills training.",
@@ -28,7 +28,7 @@
       "ATPG Vice-Chairman": "Assists and co-leads with the ATPG Chairman.",
       "Stake Welfare and Self-Reliance Specialist": "Leads the ward Welfare & Self-Reliance committee.",
       "Stake WSR Secretary": "Keeps committee records and supports the Stake WSR Specialist.",
-      "1st Counselor, Stake Presidency": "Serves as First Counselor in the Stake Presidency."
+      "Stake Presidency": "Presides over the stake — the President and his two counselors."
     }
   },
   "info": {
@@ -91,15 +91,34 @@
       "isStake": true,
       "leadership": [
         {
-          "role": "1st Counselor, Stake Presidency",
+          "role": "Stake Presidency",
           "people": [
             {
-              "id": "p1",
-              "name": "President Adonis Magsino",
+              "id": "stake-president",
+              "name": "Jesse Serrano",
               "photo": "",
               "messenger": "",
               "phone": "",
-              "email": ""
+              "email": "",
+              "calling": "President"
+            },
+            {
+              "id": "p1",
+              "name": "Adonis Magsino",
+              "photo": "",
+              "messenger": "",
+              "phone": "",
+              "email": "",
+              "calling": "1st Counselor"
+            },
+            {
+              "id": "stake-2nd-counselor",
+              "name": "John Robertson Nocos",
+              "photo": "",
+              "messenger": "",
+              "phone": "",
+              "email": "",
+              "calling": "2nd Counselor"
             }
           ]
         },
