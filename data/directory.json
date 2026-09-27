@@ -28,7 +28,15 @@
       "ATPG Vice-Chairman": "Assists and co-leads with the ATPG Chairman.",
       "Stake Welfare and Self-Reliance Specialist": "Leads the ward Welfare & Self-Reliance committee.",
       "Stake WSR Secretary": "Keeps committee records and supports the Stake WSR Specialist.",
-      "Stake Presidency": "Presides over the stake — the President and his two counselors."
+      "Stake Presidency": "Presides over the stake — the President and his two counselors.",
+      "RS WSR Coordinator": "Coordinates Relief Society involvement in Welfare & Self-Reliance efforts.",
+      "EQ WSR Coordinator": "Coordinates Elders Quorum involvement in Welfare & Self-Reliance efforts.",
+      "YW WSR Coordinator": "Coordinates Young Women involvement in Welfare & Self-Reliance efforts.",
+      "Primary WSR Coordinator": "Coordinates Primary involvement in Welfare & Self-Reliance efforts.",
+      "YSA WSR Coordinator": "Coordinates Young Single Adult involvement in Welfare & Self-Reliance efforts.",
+      "Ward Missionaries Coordinator": "Coordinates ward missionary involvement in Welfare & Self-Reliance efforts.",
+      "TFH Coordinator": "Coordinates Temple and Family History involvement in Welfare & Self-Reliance efforts.",
+      "Bishopric Coordinator": "Bishopric liaison to the Welfare & Self-Reliance committee."
     }
   },
   "info": {
@@ -283,6 +291,38 @@
             "role": "ATPG Vice-Chairman",
             "people": []
           }
+        },
+        {
+          "role": "RS WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "EQ WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "YW WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "Primary WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "YSA WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "Ward Missionaries Coordinator",
+          "people": []
+        },
+        {
+          "role": "TFH Coordinator",
+          "people": []
+        },
+        {
+          "role": "Bishopric Coordinator",
+          "people": []
         }
       ],
       "secretary": {
@@ -477,6 +517,38 @@
               "email": ""
             }
           ]
+        },
+        {
+          "role": "RS WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "EQ WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "YW WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "Primary WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "YSA WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "Ward Missionaries Coordinator",
+          "people": []
+        },
+        {
+          "role": "TFH Coordinator",
+          "people": []
+        },
+        {
+          "role": "Bishopric Coordinator",
+          "people": []
         }
       ]
     },
@@ -523,6 +595,38 @@
         },
         {
           "role": "ATPG Specialist",
+          "people": []
+        },
+        {
+          "role": "RS WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "EQ WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "YW WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "Primary WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "YSA WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "Ward Missionaries Coordinator",
+          "people": []
+        },
+        {
+          "role": "TFH Coordinator",
+          "people": []
+        },
+        {
+          "role": "Bishopric Coordinator",
           "people": []
         }
       ]
@@ -607,6 +711,38 @@
               "email": ""
             }
           ]
+        },
+        {
+          "role": "RS WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "EQ WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "YW WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "Primary WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "YSA WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "Ward Missionaries Coordinator",
+          "people": []
+        },
+        {
+          "role": "TFH Coordinator",
+          "people": []
+        },
+        {
+          "role": "Bishopric Coordinator",
+          "people": []
         }
       ]
     },
@@ -662,6 +798,38 @@
         },
         {
           "role": "ATPG Specialist",
+          "people": []
+        },
+        {
+          "role": "RS WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "EQ WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "YW WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "Primary WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "YSA WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "Ward Missionaries Coordinator",
+          "people": []
+        },
+        {
+          "role": "TFH Coordinator",
+          "people": []
+        },
+        {
+          "role": "Bishopric Coordinator",
           "people": []
         }
       ]
@@ -773,6 +941,38 @@
               "email": ""
             }
           ]
+        },
+        {
+          "role": "RS WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "EQ WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "YW WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "Primary WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "YSA WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "Ward Missionaries Coordinator",
+          "people": []
+        },
+        {
+          "role": "TFH Coordinator",
+          "people": []
+        },
+        {
+          "role": "Bishopric Coordinator",
+          "people": []
         }
       ]
     },
@@ -873,6 +1073,38 @@
         },
         {
           "role": "ATPG Specialist",
+          "people": []
+        },
+        {
+          "role": "RS WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "EQ WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "YW WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "Primary WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "YSA WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "Ward Missionaries Coordinator",
+          "people": []
+        },
+        {
+          "role": "TFH Coordinator",
+          "people": []
+        },
+        {
+          "role": "Bishopric Coordinator",
           "people": []
         }
       ]
@@ -992,6 +1224,38 @@
               "email": ""
             }
           ]
+        },
+        {
+          "role": "RS WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "EQ WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "YW WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "Primary WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "YSA WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "Ward Missionaries Coordinator",
+          "people": []
+        },
+        {
+          "role": "TFH Coordinator",
+          "people": []
+        },
+        {
+          "role": "Bishopric Coordinator",
+          "people": []
         }
       ]
     },
@@ -1038,6 +1302,38 @@
         },
         {
           "role": "ATPG Specialist",
+          "people": []
+        },
+        {
+          "role": "RS WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "EQ WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "YW WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "Primary WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "YSA WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "Ward Missionaries Coordinator",
+          "people": []
+        },
+        {
+          "role": "TFH Coordinator",
+          "people": []
+        },
+        {
+          "role": "Bishopric Coordinator",
           "people": []
         }
       ]
@@ -1149,6 +1445,38 @@
               "email": ""
             }
           ]
+        },
+        {
+          "role": "RS WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "EQ WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "YW WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "Primary WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "YSA WSR Coordinator",
+          "people": []
+        },
+        {
+          "role": "Ward Missionaries Coordinator",
+          "people": []
+        },
+        {
+          "role": "TFH Coordinator",
+          "people": []
+        },
+        {
+          "role": "Bishopric Coordinator",
+          "people": []
         }
       ]
     }

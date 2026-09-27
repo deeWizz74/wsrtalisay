@@ -50,3 +50,6 @@ data/session-secret.txt
 # uploaded photos are runtime data, not source
 public/uploads/*
 !public/uploads/.gitkeep
+
+.vercel
+.env*

@@ -26,6 +26,57 @@ function initials(name: string): string {
 
 type GroupKind = "lead" | "leadership" | "role" | "roleViceChair" | "secretary";
 
+function RestoreBackupButton({ onRestored }: { onRestored: () => void }) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [busy, setBusy] = useState(false);
+
+  const handleFile = async (file: File) => {
+    if (
+      !confirm(
+        "This replaces ALL current directory data, resources, and FAQ content with the contents of this backup file. Continue?",
+      )
+    ) {
+      return;
+    }
+    setBusy(true);
+    try {
+      const text = await file.text();
+      const res = await fetch("/api/admin/restore", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: text,
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || "Restore failed");
+      } else {
+        onRestored();
+      }
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <>
+      <input
+        ref={inputRef}
+        type="file"
+        accept="application/json"
+        className="hidden"
+        onChange={(e) => {
+          const file = e.target.files?.[0];
+          if (file) handleFile(file);
+          e.target.value = "";
+        }}
+      />
+      <Button variant="outline" size="sm" disabled={busy} onClick={() => inputRef.current?.click()}>
+        {busy ? "Restoring…" : "Restore backup"}
+      </Button>
+    </>
+  );
+}
+
 function PersonRow({
   person,
   onChanged,
@@ -252,6 +303,12 @@ export function AdminDashboard({ username }: { username: string }) {
             <a href="/api/admin/backup" className="text-sm text-muted-foreground hover:text-accent">
               Download backup
             </a>
+            <RestoreBackupButton
+              onRestored={() => {
+                loadWards();
+                reloadInfo();
+              }}
+            />
             <Button variant="outline" size="sm" onClick={() => setPwOpen(true)}>
               Change password
             </Button>
