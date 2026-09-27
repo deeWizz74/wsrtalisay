@@ -4,10 +4,6 @@ import path from "path";
 import crypto from "crypto";
 import bcrypt from "bcryptjs";
 import { cookies } from "next/headers";
-import { get, put } from "@vercel/blob";
-
-const ADMIN_BLOB_PATH = "data/admin.json";
-const SECRET_BLOB_PATH = "data/session-secret.txt";
 
 const SESSION_COOKIE = "wsr_session";
 const SESSION_MAX_AGE = 60 * 60 * 8; // 8 hours
@@ -18,67 +14,61 @@ interface AdminRecord {
 }
 
 // Same Blob-vs-local-disk split as src/lib/data.ts: production (Vercel) has
-// BLOB_READ_WRITE_TOKEN set and uses Blob storage; local dev without it
-// falls back to the local disk so the app runs standalone.
+// BLOB_READ_WRITE_TOKEN set; local dev without it falls back to disk.
+//
+// Unlike directory data and photos, admin credentials and the
+// session-signing secret are real secrets — but a single Vercel Blob store
+// can only be all-public or all-private, never both, and the store used
+// here is public (photos need direct public URLs). So in Blob mode these
+// secrets aren't persisted to Blob at all: the admin account comes straight
+// from ADMIN_USER/ADMIN_PASS env vars (no signup, no stored hash, no
+// separate password-change flow — update the env vars and redeploy
+// instead), and the session secret is a per-process random value unless
+// SESSION_SECRET is set (set it to keep sessions valid across redeploys).
 const USE_BLOB = !!process.env.BLOB_READ_WRITE_TOKEN;
 const LOCAL_DATA_DIR = path.join(process.cwd(), "data");
-
-// Admin credentials and the session-signing secret hold real secrets (a
-// password hash, an HMAC key), so on Blob they're stored as *private* blobs
-// — readable only with the server's BLOB_READ_WRITE_TOKEN, never by URL —
-// unlike the directory data and photos, which are meant to be public.
-async function readPrivateText(blobPath: string, localFile: string): Promise<string | null> {
-  if (!USE_BLOB) {
-    if (!fs.existsSync(localFile)) return null;
-    return fs.readFileSync(localFile, "utf8");
-  }
-  const result = await get(blobPath, { access: "private" });
-  if (!result) return null;
-  return await new Response(result.stream).text();
-}
-
-async function writePrivateText(blobPath: string, localFile: string, contents: string): Promise<void> {
-  if (!USE_BLOB) {
-    fs.mkdirSync(LOCAL_DATA_DIR, { recursive: true });
-    fs.writeFileSync(localFile, contents);
-    return;
-  }
-  await put(blobPath, contents, {
-    access: "private",
-    addRandomSuffix: false,
-    allowOverwrite: true,
-    contentType: "text/plain",
-  });
-}
-
 const ADMIN_LOCAL_FILE = path.join(LOCAL_DATA_DIR, "admin.json");
 const SECRET_LOCAL_FILE = path.join(LOCAL_DATA_DIR, "session-secret.txt");
+
+function timingSafeEqualStr(a: string, b: string): boolean {
+  const bufA = Buffer.from(a);
+  const bufB = Buffer.from(b);
+  if (bufA.length !== bufB.length) return false;
+  return crypto.timingSafeEqual(bufA, bufB);
+}
 
 let cachedSecret: string | null = null;
 
 async function getSessionSecret(): Promise<string> {
   if (cachedSecret) return cachedSecret;
-  let secret = await readPrivateText(SECRET_BLOB_PATH, SECRET_LOCAL_FILE);
-  if (!secret) {
-    secret = crypto.randomBytes(32).toString("hex");
-    await writePrivateText(SECRET_BLOB_PATH, SECRET_LOCAL_FILE, secret);
+
+  if (USE_BLOB) {
+    cachedSecret = process.env.SESSION_SECRET || crypto.randomBytes(32).toString("hex");
+    return cachedSecret;
   }
-  cachedSecret = secret;
-  return secret;
+
+  if (!fs.existsSync(SECRET_LOCAL_FILE)) {
+    fs.mkdirSync(LOCAL_DATA_DIR, { recursive: true });
+    fs.writeFileSync(SECRET_LOCAL_FILE, crypto.randomBytes(32).toString("hex"));
+  }
+  cachedSecret = fs.readFileSync(SECRET_LOCAL_FILE, "utf8");
+  return cachedSecret;
 }
 
 // Single admin account, no public signup. Set ADMIN_USER/ADMIN_PASS in the
-// environment for a stable login that survives a redeploy; otherwise a
-// random password is generated once and printed to the server log.
-export async function bootstrapAdmin(): Promise<AdminRecord> {
-  const existing = await readPrivateText(ADMIN_BLOB_PATH, ADMIN_LOCAL_FILE);
-  if (existing) return JSON.parse(existing) as AdminRecord;
-
+// environment for a stable login that survives a redeploy; on the
+// local-disk fallback, a random password is generated once and printed to
+// the server log if those aren't set.
+function bootstrapLocalAdmin(): AdminRecord {
+  if (fs.existsSync(ADMIN_LOCAL_FILE)) {
+    return JSON.parse(fs.readFileSync(ADMIN_LOCAL_FILE, "utf8")) as AdminRecord;
+  }
+  fs.mkdirSync(LOCAL_DATA_DIR, { recursive: true });
   const username = process.env.ADMIN_USER || "admin";
   const password = process.env.ADMIN_PASS || crypto.randomBytes(6).toString("base64url");
   const passwordHash = bcrypt.hashSync(password, 10);
   const record: AdminRecord = { username, passwordHash };
-  await writePrivateText(ADMIN_BLOB_PATH, ADMIN_LOCAL_FILE, JSON.stringify(record, null, 2));
+  fs.writeFileSync(ADMIN_LOCAL_FILE, JSON.stringify(record, null, 2));
   console.log("========================================================");
   console.log(" Admin account created:");
   console.log("   username:", username);
@@ -88,16 +78,14 @@ export async function bootstrapAdmin(): Promise<AdminRecord> {
   return record;
 }
 
-async function readAdmin(): Promise<AdminRecord> {
-  return bootstrapAdmin();
-}
-
-async function writeAdmin(admin: AdminRecord): Promise<void> {
-  await writePrivateText(ADMIN_BLOB_PATH, ADMIN_LOCAL_FILE, JSON.stringify(admin, null, 2));
-}
-
 export async function verifyCredentials(username: string, password: string): Promise<boolean> {
-  const admin = await readAdmin();
+  if (USE_BLOB) {
+    const envUser = process.env.ADMIN_USER;
+    const envPass = process.env.ADMIN_PASS;
+    if (!envUser || !envPass) return false;
+    return timingSafeEqualStr(username, envUser) && timingSafeEqualStr(password || "", envPass);
+  }
+  const admin = bootstrapLocalAdmin();
   return username === admin.username && bcrypt.compareSync(password || "", admin.passwordHash);
 }
 
@@ -105,7 +93,13 @@ export async function changePassword(
   currentPassword: string,
   newPassword: string,
 ): Promise<{ ok: boolean; error?: string }> {
-  const admin = await readAdmin();
+  if (USE_BLOB) {
+    return {
+      ok: false,
+      error: "Admin login is set via ADMIN_USER/ADMIN_PASS environment variables on this deployment — update them there and redeploy to change it.",
+    };
+  }
+  const admin = bootstrapLocalAdmin();
   if (!bcrypt.compareSync(currentPassword || "", admin.passwordHash)) {
     return { ok: false, error: "Current password is incorrect" };
   }
@@ -113,7 +107,7 @@ export async function changePassword(
     return { ok: false, error: "New password must be at least 6 characters" };
   }
   admin.passwordHash = bcrypt.hashSync(newPassword, 10);
-  await writeAdmin(admin);
+  fs.writeFileSync(ADMIN_LOCAL_FILE, JSON.stringify(admin, null, 2));
   return { ok: true };
 }
 
