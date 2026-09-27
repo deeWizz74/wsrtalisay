@@ -22,7 +22,10 @@ async function fetchDirectoryBlob(): Promise<DirectoryData | null> {
     if (!fs.existsSync(LOCAL_DIRECTORY_FILE)) return null;
     return JSON.parse(fs.readFileSync(LOCAL_DIRECTORY_FILE, "utf8")) as DirectoryData;
   }
-  const result = await get(DIRECTORY_BLOB_PATH, { access: "public" });
+  // useCache: false — admin edits must be visible on the very next read
+  // (e.g. the dashboard re-fetching right after a delete/save), not served
+  // from a CDN copy that hasn't caught up with the write yet.
+  const result = await get(DIRECTORY_BLOB_PATH, { access: "public", useCache: false });
   if (!result) return null;
   return (await new Response(result.stream).json()) as DirectoryData;
 }
