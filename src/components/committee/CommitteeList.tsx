@@ -158,7 +158,7 @@ export function CommitteeList({ ward, roleLegend }: { ward: Ward; roleLegend: Re
       )}
 
       <h2 className="mt-2 text-xs font-extrabold uppercase tracking-[0.14em] text-muted-foreground">
-        {ward.isStake ? "Stake WSR Committee" : "Ward WSR Committee"}
+        {ward.isStake ? "Stake WSR Council" : "Ward WSR Committee"}
       </h2>
       <RoleSection group={ward.lead} selected={selected} onSelect={setSelected} />
       {ward.roles.map((g) => (
