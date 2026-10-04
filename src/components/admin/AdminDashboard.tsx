@@ -98,6 +98,20 @@ function PersonRow({
   const [saved, setSaved] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  // PersonRow is keyed by person.id, so a restore (or any refresh that
+  // brings back different data for the same id) doesn't remount this
+  // component — resync local field state whenever the person prop changes.
+  useEffect(() => {
+    setFields({
+      name: person.name,
+      messenger: person.messenger,
+      phone: person.phone,
+      email: person.email,
+      calling: person.calling ?? "",
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [person]);
+
   const save = (next: typeof fields) => {
     if (timer.current) clearTimeout(timer.current);
     timer.current = setTimeout(async () => {
