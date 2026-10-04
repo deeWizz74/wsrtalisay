@@ -7,10 +7,10 @@
       "Education Specialist": "Helps members pursue education and skills training.",
       "Family Services Specialist": "Connects members with counseling and family support resources.",
       "Health and Nutrition Specialist": "Supports members on health, nutrition, and emergency preparedness.",
-      "GAMA Specialist": "GAMA = Guide to Administering Medical Assistance. Helps members access medical assistance guidance.",
+      "Guide to Administering Medical Assistance Specialist": "Helps members access medical assistance guidance.",
       "My Plan Specialist": "Helps Returned Missionaries build their personal My Plan for continued self-reliance.",
       "Business and Employment Specialist": "Assists with job search, resumes, and small business support.",
-      "ATPG Specialist": "ATPG = Area Temporal Preparedness Guide. Coordinates emergency and temporal preparedness planning.",
+      "Area Temporal Preparedness Guide Specialist": "Coordinates emergency and temporal preparedness planning.",
       "High Councilor": "Assigned stake leader supporting wards and stake committees.",
       "Education Chairman": "Helps members pursue education and skills training.",
       "Education Vice-Chairman": "Assists and co-leads with the Education Chairman.",
@@ -18,14 +18,14 @@
       "Family Services Vice-Chairman": "Assists and co-leads with the Family Services Chairman.",
       "Health and Nutrition Chairman": "Supports members on health, nutrition, and emergency preparedness.",
       "Health and Nutrition Vice-Chairman": "Assists and co-leads with the Health and Nutrition Chairman.",
-      "GAMA Chairman": "GAMA = Guide to Administering Medical Assistance. Helps members access medical assistance guidance.",
-      "GAMA Vice-Chairman": "Assists and co-leads with the GAMA Chairman.",
+      "Guide to Administering Medical Assistance Chairman": "Helps members access medical assistance guidance.",
+      "Guide to Administering Medical Assistance Vice-Chairman": "Assists and co-leads with the Guide to Administering Medical Assistance Chairman.",
       "My Plan Chairman": "Helps Returned Missionaries build their personal My Plan for continued self-reliance.",
       "My Plan Vice-Chairman": "Assists and co-leads with the My Plan Chairman.",
       "Business and Employment Chairman": "Assists with job search, resumes, and small business support.",
       "Business and Employment Vice-Chairman": "Assists and co-leads with the Business and Employment Chairman.",
-      "ATPG Chairman": "ATPG = Area Temporal Preparedness Guide. Coordinates emergency and temporal preparedness planning.",
-      "ATPG Vice-Chairman": "Assists and co-leads with the ATPG Chairman.",
+      "Area Temporal Preparedness Guide Chairman": "Coordinates emergency and temporal preparedness planning.",
+      "Area Temporal Preparedness Guide Vice-Chairman": "Assists and co-leads with the Area Temporal Preparedness Guide Chairman.",
       "Stake Welfare and Self-Reliance Specialist": "Leads the ward Welfare & Self-Reliance committee.",
       "Stake Welfare and Self-Reliance Secretary": "Keeps committee records and supports the Stake Welfare and Self-Reliance Specialist.",
       "Stake Presidency": "Presides over the stake — the President and his two counselors.",
@@ -219,7 +219,7 @@
           }
         },
         {
-          "role": "GAMA Chairman",
+          "role": "Guide to Administering Medical Assistance Chairman",
           "people": [
             {
               "id": "p9",
@@ -239,7 +239,7 @@
             }
           ],
           "viceChair": {
-            "role": "GAMA Vice-Chairman",
+            "role": "Guide to Administering Medical Assistance Vice-Chairman",
             "people": []
           }
         },
@@ -269,7 +269,7 @@
           }
         },
         {
-          "role": "ATPG Chairman",
+          "role": "Area Temporal Preparedness Guide Chairman",
           "people": [
             {
               "id": "p11",
@@ -281,7 +281,7 @@
             }
           ],
           "viceChair": {
-            "role": "ATPG Vice-Chairman",
+            "role": "Area Temporal Preparedness Guide Vice-Chairman",
             "people": []
           }
         },
@@ -458,7 +458,7 @@
           ]
         },
         {
-          "role": "GAMA Specialist",
+          "role": "Guide to Administering Medical Assistance Specialist",
           "people": [
             {
               "id": "p16",
@@ -545,7 +545,7 @@
           ]
         },
         {
-          "role": "ATPG Specialist",
+          "role": "Area Temporal Preparedness Guide Specialist",
           "people": [
             {
               "id": "p19",
@@ -597,7 +597,7 @@
           "people": []
         },
         {
-          "role": "GAMA Specialist",
+          "role": "Guide to Administering Medical Assistance Specialist",
           "people": []
         },
         {
@@ -609,7 +609,7 @@
           "people": []
         },
         {
-          "role": "ATPG Specialist",
+          "role": "Area Temporal Preparedness Guide Specialist",
           "people": []
         }
       ]
@@ -662,7 +662,7 @@
           ]
         },
         {
-          "role": "GAMA Specialist",
+          "role": "Guide to Administering Medical Assistance Specialist",
           "people": [
             {
               "id": "p24",
@@ -683,7 +683,7 @@
           "people": []
         },
         {
-          "role": "ATPG Specialist",
+          "role": "Area Temporal Preparedness Guide Specialist",
           "people": [
             {
               "id": "p25",
@@ -736,7 +736,7 @@
           "people": []
         },
         {
-          "role": "GAMA Specialist",
+          "role": "Guide to Administering Medical Assistance Specialist",
           "people": []
         },
         {
@@ -748,7 +748,7 @@
           "people": []
         },
         {
-          "role": "ATPG Specialist",
+          "role": "Area Temporal Preparedness Guide Specialist",
           "people": []
         }
       ]
@@ -810,7 +810,7 @@
           ]
         },
         {
-          "role": "GAMA Specialist",
+          "role": "Guide to Administering Medical Assistance Specialist",
           "people": [
             {
               "id": "p32",
@@ -849,7 +849,7 @@
           ]
         },
         {
-          "role": "ATPG Specialist",
+          "role": "Area Temporal Preparedness Guide Specialist",
           "people": [
             {
               "id": "p35",
@@ -920,7 +920,7 @@
           ]
         },
         {
-          "role": "GAMA Specialist",
+          "role": "Guide to Administering Medical Assistance Specialist",
           "people": [
             {
               "id": "p40",
@@ -959,7 +959,7 @@
           ]
         },
         {
-          "role": "ATPG Specialist",
+          "role": "Area Temporal Preparedness Guide Specialist",
           "people": []
         }
       ]
@@ -1029,7 +1029,7 @@
           ]
         },
         {
-          "role": "GAMA Specialist",
+          "role": "Guide to Administering Medical Assistance Specialist",
           "people": [
             {
               "id": "p47",
@@ -1068,7 +1068,7 @@
           ]
         },
         {
-          "role": "ATPG Specialist",
+          "role": "Area Temporal Preparedness Guide Specialist",
           "people": [
             {
               "id": "p50",
@@ -1112,7 +1112,7 @@
           "people": []
         },
         {
-          "role": "GAMA Specialist",
+          "role": "Guide to Administering Medical Assistance Specialist",
           "people": []
         },
         {
@@ -1124,7 +1124,7 @@
           "people": []
         },
         {
-          "role": "ATPG Specialist",
+          "role": "Area Temporal Preparedness Guide Specialist",
           "people": []
         }
       ]
@@ -1186,7 +1186,7 @@
           ]
         },
         {
-          "role": "GAMA Specialist",
+          "role": "Guide to Administering Medical Assistance Specialist",
           "people": [
             {
               "id": "p56",
@@ -1225,7 +1225,7 @@
           ]
         },
         {
-          "role": "ATPG Specialist",
+          "role": "Area Temporal Preparedness Guide Specialist",
           "people": [
             {
               "id": "p59",

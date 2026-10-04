@@ -12,10 +12,10 @@ const SPECIALIST_ROLES = [
   "Education Specialist",
   "Family Services Specialist",
   "Health and Nutrition Specialist",
-  "GAMA Specialist",
+  "Guide to Administering Medical Assistance Specialist",
   "My Plan Specialist",
   "Business and Employment Specialist",
-  "ATPG Specialist",
+  "Area Temporal Preparedness Guide Specialist",
 ];
 
 export default async function HomePage() {
