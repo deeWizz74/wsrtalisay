@@ -3,7 +3,7 @@
     "title": "Talisay Stake — Know Your Specialist",
     "updatedAt": "2026-09-18T16:37:10.829Z",
     "roleLegend": {
-      "WSR Specialist": "Leads the ward Welfare & Self-Reliance committee.",
+      "Welfare and Self-Reliance Specialist": "Leads the ward Welfare & Self-Reliance committee.",
       "Education Specialist": "Helps members pursue education and skills training.",
       "Family Services Specialist": "Connects members with counseling and family support resources.",
       "Health and Nutrition Specialist": "Supports members on health, nutrition, and emergency preparedness.",
@@ -27,9 +27,9 @@
       "ATPG Chairman": "ATPG = Area Temporal Preparedness Guide. Coordinates emergency and temporal preparedness planning.",
       "ATPG Vice-Chairman": "Assists and co-leads with the ATPG Chairman.",
       "Stake Welfare and Self-Reliance Specialist": "Leads the ward Welfare & Self-Reliance committee.",
-      "Stake WSR Secretary": "Keeps committee records and supports the Stake WSR Specialist.",
+      "Stake Welfare and Self-Reliance Secretary": "Keeps committee records and supports the Stake Welfare and Self-Reliance Specialist.",
       "Stake Presidency": "Presides over the stake — the President and his two counselors.",
-      "Ward WSR Specialist": "Leads Welfare & Self-Reliance efforts in their ward; reports to the Stake WSR Specialist."
+      "Ward Welfare and Self-Reliance Specialist": "Leads Welfare & Self-Reliance efforts in their ward; reports to the Stake Welfare and Self-Reliance Specialist."
     }
   },
   "info": {
@@ -286,7 +286,7 @@
           }
         },
         {
-          "role": "Ward WSR Specialist",
+          "role": "Ward Welfare and Self-Reliance Specialist",
           "people": [
             {
               "id": "stake-wardspec-carcar-p12",
@@ -373,7 +373,7 @@
         }
       ],
       "secretary": {
-        "role": "Stake WSR Secretary",
+        "role": "Stake Welfare and Self-Reliance Secretary",
         "people": []
       }
     },
@@ -381,7 +381,7 @@
       "slug": "carcar",
       "name": "Carcar Ward",
       "lead": {
-        "role": "WSR Specialist",
+        "role": "Welfare and Self-Reliance Specialist",
         "people": [
           {
             "id": "p12",
@@ -571,7 +571,7 @@
       "slug": "lawaan-1st",
       "name": "Lawaan 1st Ward",
       "lead": {
-        "role": "WSR Specialist",
+        "role": "Welfare and Self-Reliance Specialist",
         "people": [
           {
             "id": "p20",
@@ -618,7 +618,7 @@
       "slug": "lawaan-2nd",
       "name": "Lawaan 2nd Ward",
       "lead": {
-        "role": "WSR Specialist",
+        "role": "Welfare and Self-Reliance Specialist",
         "people": [
           {
             "id": "p21",
@@ -701,7 +701,7 @@
       "slug": "linao",
       "name": "Linao Ward",
       "lead": {
-        "role": "WSR Specialist",
+        "role": "Welfare and Self-Reliance Specialist",
         "people": [
           {
             "id": "p26",
@@ -757,7 +757,7 @@
       "slug": "minglanilla",
       "name": "Minglanilla Ward",
       "lead": {
-        "role": "WSR Specialist",
+        "role": "Welfare and Self-Reliance Specialist",
         "people": [
           {
             "id": "p28",
@@ -867,7 +867,7 @@
       "slug": "naga",
       "name": "Naga Ward",
       "lead": {
-        "role": "WSR Specialist",
+        "role": "Welfare and Self-Reliance Specialist",
         "people": [
           {
             "id": "p36",
@@ -968,7 +968,7 @@
       "slug": "pardo",
       "name": "Pardo Ward",
       "lead": {
-        "role": "WSR Specialist",
+        "role": "Welfare and Self-Reliance Specialist",
         "people": [
           {
             "id": "p43",
@@ -1086,7 +1086,7 @@
       "slug": "talisay-1st",
       "name": "Talisay 1st Ward",
       "lead": {
-        "role": "WSR Specialist",
+        "role": "Welfare and Self-Reliance Specialist",
         "people": [
           {
             "id": "p51",
@@ -1133,7 +1133,7 @@
       "slug": "talisay-2nd",
       "name": "Talisay 2nd Ward",
       "lead": {
-        "role": "WSR Specialist",
+        "role": "Welfare and Self-Reliance Specialist",
         "people": [
           {
             "id": "p52",

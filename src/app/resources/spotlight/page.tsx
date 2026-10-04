@@ -25,7 +25,9 @@ export default async function SpotlightPage() {
 
       <main className="mx-auto max-w-3xl px-4 pb-16 pt-10 sm:px-6">
         <h1 className="text-3xl font-bold tracking-tight text-foreground">Spotlight</h1>
-        <p className="mt-1 text-sm text-muted-foreground">Meet the people serving on your WSR committees.</p>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Meet the people serving on your Welfare and Self-Reliance committees.
+        </p>
 
         {spotlight.length === 0 ? (
           <p className="mt-10 text-sm text-muted-foreground">Nothing here yet.</p>
@@ -78,8 +80,8 @@ export default async function SpotlightPage() {
       </main>
 
       <footer className="border-t py-6 text-center text-xs text-muted-foreground">
-        Maintained by the Talisay Stake WSR committee. Notice something out of date? Let your ward&apos;s WSR
-        Specialist know.
+        Maintained by the Talisay Stake Welfare and Self-Reliance committee. Notice something out of date? Let your
+        ward&apos;s Welfare and Self-Reliance Specialist know.
       </footer>
     </div>
   );

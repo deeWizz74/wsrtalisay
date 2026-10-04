@@ -158,7 +158,7 @@ export function CommitteeList({ ward, roleLegend }: { ward: Ward; roleLegend: Re
       )}
 
       <h2 className="mt-2 text-xs font-extrabold uppercase tracking-[0.14em] text-muted-foreground">
-        {ward.isStake ? "Stake WSR Council" : "Ward WSR Committee"}
+        {ward.isStake ? "Stake Welfare and Self-Reliance Council" : "Ward Welfare and Self-Reliance Council"}
       </h2>
       <RoleSection group={ward.lead} selected={selected} onSelect={setSelected} />
       {ward.roles.map((g) => (
@@ -193,7 +193,7 @@ export function CommitteeList({ ward, roleLegend }: { ward: Ward; roleLegend: Re
                 <InfoPanel
                   bare
                   title="Vacant"
-                  description={`${roleLegend[selected.role] ?? ""} This role is currently unassigned — contact the ward WSR Specialist if you can serve.`}
+                  description={`${roleLegend[selected.role] ?? ""} This role is currently unassigned — contact the ward Welfare and Self-Reliance Specialist if you can serve.`}
                 />
               )}
             </div>

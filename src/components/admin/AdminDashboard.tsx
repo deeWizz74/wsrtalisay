@@ -426,7 +426,7 @@ export function AdminDashboard({ username }: { username: string }) {
 
         {tab === "efforts" && info && (
           <EffortsSection
-            title="Stake and Ward WSR Efforts"
+            title="Stake and Ward Welfare and Self-Reliance Efforts"
             posts={info.wsrEfforts}
             onChange={(wsrEfforts) => updateInfo({ ...info, wsrEfforts })}
             onPhotoUploaded={reloadInfo}

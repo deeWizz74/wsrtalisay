@@ -98,7 +98,7 @@ export async function deletePhoto(url: string): Promise<void> {
 }
 
 // A specialist role chairs its own area (viceChair), and a stake-level
-// secretary reports directly to the WSR specialist — both are optional
+// secretary reports directly to the Welfare and Self-Reliance specialist — both are optional
 // extra groups beyond the ward's core leadership/lead/roles structure.
 export function wardGroups(ward: Ward): Group[] {
   const groups: Group[] = [...(ward.leadership || []), ward.lead, ...ward.roles];

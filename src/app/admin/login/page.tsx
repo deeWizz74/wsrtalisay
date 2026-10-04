@@ -40,7 +40,7 @@ export default function AdminLoginPage() {
         </div>
         <div>
           <h1 className="text-xl font-bold text-foreground">Admin Sign In</h1>
-          <p className="text-sm text-muted-foreground">Talisay Stake WSR Directory</p>
+          <p className="text-sm text-muted-foreground">Talisay Stake Welfare and Self-Reliance Directory</p>
         </div>
 
         {error && <p className="rounded-lg bg-destructive/10 px-3 py-2 text-sm text-destructive">{error}</p>}

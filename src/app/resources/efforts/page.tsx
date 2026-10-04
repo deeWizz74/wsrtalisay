@@ -44,7 +44,7 @@ export default async function EffortsPage({
       <SiteHeader backHref="/resources" backLabel="← All resources" />
 
       <main className="mx-auto max-w-3xl px-4 pb-16 pt-10 sm:px-6">
-        <h1 className="text-3xl font-bold tracking-tight text-foreground">Stake and Ward WSR Efforts</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-foreground">Stake and Ward Welfare and Self-Reliance Efforts</h1>
         <p className="mt-1 text-sm text-muted-foreground">What stake and ward committees are working on.</p>
 
         {archive.length > 0 && <EffortsArchiveFilter archive={archive} selectedYear={year} selectedMonth={month} />}
@@ -111,8 +111,8 @@ export default async function EffortsPage({
       </main>
 
       <footer className="border-t py-6 text-center text-xs text-muted-foreground">
-        Maintained by the Talisay Stake WSR committee. Notice something out of date? Let your ward&apos;s WSR
-        Specialist know.
+        Maintained by the Talisay Stake Welfare and Self-Reliance committee. Notice something out of date? Let your
+        ward&apos;s Welfare and Self-Reliance Specialist know.
       </footer>
     </div>
   );

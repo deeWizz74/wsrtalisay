@@ -66,8 +66,8 @@ export default async function EffortPostPage({ params }: { params: Promise<{ id:
       </main>
 
       <footer className="border-t py-6 text-center text-xs text-muted-foreground">
-        Maintained by the Talisay Stake WSR committee. Notice something out of date? Let your ward&apos;s WSR
-        Specialist know.
+        Maintained by the Talisay Stake Welfare and Self-Reliance committee. Notice something out of date? Let your
+        ward&apos;s Welfare and Self-Reliance Specialist know.
       </footer>
     </div>
   );
