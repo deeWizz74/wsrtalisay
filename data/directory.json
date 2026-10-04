@@ -28,7 +28,8 @@
       "ATPG Vice-Chairman": "Assists and co-leads with the ATPG Chairman.",
       "Stake Welfare and Self-Reliance Specialist": "Leads the ward Welfare & Self-Reliance committee.",
       "Stake WSR Secretary": "Keeps committee records and supports the Stake WSR Specialist.",
-      "Stake Presidency": "Presides over the stake — the President and his two counselors."
+      "Stake Presidency": "Presides over the stake — the President and his two counselors.",
+      "Ward WSR Specialist": "Leads Welfare & Self-Reliance efforts in their ward; reports to the Stake WSR Specialist."
     }
   },
   "info": {
@@ -162,87 +163,6 @@
             "messenger": "",
             "phone": "",
             "email": ""
-          },
-          {
-            "id": "stake-council-carcar-p12",
-            "name": "Ivona Mausisa",
-            "photo": "",
-            "messenger": "",
-            "phone": "",
-            "email": "",
-            "calling": "Carcar Ward Specialist"
-          },
-          {
-            "id": "stake-council-lawaan-1st-p20",
-            "name": "Aniceta Pongase",
-            "photo": "",
-            "messenger": "",
-            "phone": "",
-            "email": "",
-            "calling": "Lawaan 1st Ward Specialist"
-          },
-          {
-            "id": "stake-council-lawaan-2nd-p21",
-            "name": "Jeffrey Traya",
-            "photo": "",
-            "messenger": "",
-            "phone": "",
-            "email": "",
-            "calling": "Lawaan 2nd Ward Specialist"
-          },
-          {
-            "id": "stake-council-linao-p26",
-            "name": "Rossvet Lopez",
-            "photo": "",
-            "messenger": "",
-            "phone": "",
-            "email": "",
-            "calling": "Linao Ward Specialist"
-          },
-          {
-            "id": "stake-council-minglanilla-p28",
-            "name": "Mary Ann Silim",
-            "photo": "",
-            "messenger": "",
-            "phone": "",
-            "email": "",
-            "calling": "Minglanilla Ward Specialist"
-          },
-          {
-            "id": "stake-council-naga-p36",
-            "name": "Alicia Gaa",
-            "photo": "",
-            "messenger": "",
-            "phone": "",
-            "email": "",
-            "calling": "Naga Ward Specialist"
-          },
-          {
-            "id": "stake-council-pardo-p43",
-            "name": "Louriz Calica",
-            "photo": "",
-            "messenger": "",
-            "phone": "",
-            "email": "",
-            "calling": "Pardo Ward Specialist"
-          },
-          {
-            "id": "stake-council-talisay-1st-p51",
-            "name": "Hazel Tausa",
-            "photo": "",
-            "messenger": "",
-            "phone": "",
-            "email": "",
-            "calling": "Talisay 1st Ward Specialist"
-          },
-          {
-            "id": "stake-council-talisay-2nd-p52",
-            "name": "Shiela Garcia",
-            "photo": "",
-            "messenger": "",
-            "phone": "",
-            "email": "",
-            "calling": "Talisay 2nd Ward Specialist"
           }
         ]
       },
@@ -364,6 +284,92 @@
             "role": "ATPG Vice-Chairman",
             "people": []
           }
+        },
+        {
+          "role": "Ward WSR Specialist",
+          "people": [
+            {
+              "id": "stake-wardspec-carcar-p12",
+              "name": "Ivona Mausisa",
+              "photo": "",
+              "messenger": "",
+              "phone": "",
+              "email": "",
+              "calling": "Carcar Ward Specialist"
+            },
+            {
+              "id": "stake-wardspec-lawaan-1st-p20",
+              "name": "Aniceta Pongase",
+              "photo": "",
+              "messenger": "",
+              "phone": "",
+              "email": "",
+              "calling": "Lawaan 1st Ward Specialist"
+            },
+            {
+              "id": "stake-wardspec-lawaan-2nd-p21",
+              "name": "Jeffrey Traya",
+              "photo": "",
+              "messenger": "",
+              "phone": "",
+              "email": "",
+              "calling": "Lawaan 2nd Ward Specialist"
+            },
+            {
+              "id": "stake-wardspec-linao-p26",
+              "name": "Rossvet Lopez",
+              "photo": "",
+              "messenger": "",
+              "phone": "",
+              "email": "",
+              "calling": "Linao Ward Specialist"
+            },
+            {
+              "id": "stake-wardspec-minglanilla-p28",
+              "name": "Mary Ann Silim",
+              "photo": "",
+              "messenger": "",
+              "phone": "",
+              "email": "",
+              "calling": "Minglanilla Ward Specialist"
+            },
+            {
+              "id": "stake-wardspec-naga-p36",
+              "name": "Alicia Gaa",
+              "photo": "",
+              "messenger": "",
+              "phone": "",
+              "email": "",
+              "calling": "Naga Ward Specialist"
+            },
+            {
+              "id": "stake-wardspec-pardo-p43",
+              "name": "Louriz Calica",
+              "photo": "",
+              "messenger": "",
+              "phone": "",
+              "email": "",
+              "calling": "Pardo Ward Specialist"
+            },
+            {
+              "id": "stake-wardspec-talisay-1st-p51",
+              "name": "Hazel Tausa",
+              "photo": "",
+              "messenger": "",
+              "phone": "",
+              "email": "",
+              "calling": "Talisay 1st Ward Specialist"
+            },
+            {
+              "id": "stake-wardspec-talisay-2nd-p52",
+              "name": "Shiela Garcia",
+              "photo": "",
+              "messenger": "",
+              "phone": "",
+              "email": "",
+              "calling": "Talisay 2nd Ward Specialist"
+            }
+          ]
         }
       ],
       "secretary": {
